@@ -1,0 +1,61 @@
+{
+  "name": "prompt-provenance-diff",
+  "version": "0.1.0",
+  "description": "Diff two prompt-provenance JSON documents (per prompt-provenance-spec v0.1) — classify changes (prompt hash changed, approval state regressed, lineage parent changed, out-of-scope rewritten, evaluation regression, reviewer / approver changes) and surface a breaking flag. The prompt-provenance counterpart to agent-card-diff, mcp-tool-card-diff, and evidence-bundle-diff.",
+  "type": "module",
+  "license": "AGPL-3.0-or-later",
+  "author": "mizcausevic-dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mizcausevic-dev/prompt-provenance-diff"
+  },
+  "keywords": [
+    "prompt-provenance",
+    "prompt-engineering",
+    "diff",
+    "breaking-change",
+    "approval",
+    "lineage",
+    "ai-governance",
+    "kinetic-gain-suite",
+    "typescript"
+  ],
+  "bin": {
+    "prompt-provenance-diff": "dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage",
+    "demo": "tsx src/cli.ts fixtures/previous.json fixtures/next-nonbreaking.json --format markdown",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@types/node": "^22.10.0",
+    "@vitest/coverage-v8": "^2.1.8",
+    "eslint": "^9.17.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.0",
+    "vitest": "^2.1.8"
+  }
+}
